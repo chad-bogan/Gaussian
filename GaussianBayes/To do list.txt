@@ -1,0 +1,90 @@
+Done already:
+Get filereader working
+Add every value in x and y to an arraylist
+
+To do:
+separate points based on classes
+determine class sizes?
+math is easier to do, just have to feed in trainer data first
+
+IDEAS:
+Make each class a list of the x-values and y-values respectively
+so in an arraylist where x = the indices/classes
+
+x=0
+(01, 02, ...)
+x=1
+(11, 12, ...)
+x=2
+(21, 22, ...)
+x=3
+(31, 32, ...)
+and so on
+
+Same goes for y values
+
+DETERMINE CLASS SIZES
+Scan through the file and count each first character on the line
+print out how many times each class appears
+
+DONE:
+Made a class that contains 1 int per class/point it goes as follows
+0
+1
+2
+3
+4
+
+Now I must create an arraylist that puts each of the coordinates at each respective class (index)
+I am doing this by making an arraylist within an arraylist. The inner arraylist contains each x or y value for the class/index. So ArrayList.get(ArrayList.get(0)) == the x points
+
+
+
+DONE AS OF 9/26/18
+Classes now has no dupe values
+Still working on storing data
+Math is the easy part.
+
+DONE AS OF 9/28/18
+The data is now stored! Now for the maths!
+
+Ideas:
+Loop through each class and calculate the values for each
+Make a separate method to handle math
+Return doubles (probability)
+IDEAS:
+public class Statistics {
+    double[] data;
+    int size;   
+
+    public Statistics(double[] data) {
+        this.data = data;
+        size = data.length;
+    }   
+
+    double getMean() {
+        double sum = 0.0;
+        for(double a : data)
+            sum += a;
+        return sum/size;
+    }
+
+    double getVariance() {
+        double mean = getMean();
+        double temp = 0;
+        for(double a :data)
+            temp += (a-mean)*(a-mean);
+        return temp/(size-1);
+    }
+
+    double getStdDev() {
+        return Math.sqrt(getVariance());
+    }
+
+    public double median() {
+       Arrays.sort(data);
+       if (data.length % 2 == 0)
+          return (data[(data.length / 2) - 1] + data[data.length / 2]) / 2.0;
+       return data[data.length / 2];
+    }
+}

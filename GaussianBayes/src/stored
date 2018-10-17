@@ -1,0 +1,27 @@
+temp = fileScan.nextInt();
+				dataX.add(fileScan.nextDouble());
+				//dataX.add(null);
+				dataY.add(fileScan.nextDouble());
+				
+				System.out.println(dataX.get(counter) + " POWERGAP " + counter);
+				//System.out.println(dataY.get(counter) + " POWERGAP " + counter);
+				counter++;
+				//if(counter % 2 == 0) {
+				//	dataX.add(null);
+				//}
+				fileScan.nextLine();
+				
+				
+				
+				//if(counter % 2 == 0) {
+				//	dataX.add(null);
+				//	dataY.add(null);
+				//}
+				//System.out.println("COUNT : " + counter);
+			}
+			/*
+			 * Note: All data points are added to their respective x and y arraylists at this point.
+			 * Now I must separate each point by it's respective class by inserting a dummy value between
+			 * each class's data points.
+			 */
+			 stored

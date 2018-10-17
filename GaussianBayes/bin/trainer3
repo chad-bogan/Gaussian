@@ -1,0 +1,19 @@
+try {
+			Scanner fileScan = new Scanner(new BufferedReader(new FileReader("trainer.txt")));
+			while(fileScan.hasNext()) {
+				if(fileScan.hasNextInt()) {
+					if (fileScan.nextInt() == 0) {
+						System.out.println("Ok");
+					}
+					
+					System.out.println(fileScan.nextInt());
+					
+					
+				} 
+				//classToken = fileScan.nextInt();
+				
+				//System.out.println(fileScan.nextInt());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
