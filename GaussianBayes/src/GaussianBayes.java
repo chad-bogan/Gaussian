@@ -1,6 +1,16 @@
+/**
+ * The GaussianBayes program reads a .txt file of training data
+ * arranged in into classes. The data is then used in multiple
+ * math operations alongside a user-inputed point to determine the
+ * probability of the given point in each class. If the probability is too low, the 
+ * program will print 0.0, just due to rounding. Some code is unused and/or commented
+ * out due to testing. The program works as intended.
+ * 
+ * @author Patrick Hogan
+ * 
+ */
 import java.util.*;
 import java.util.Scanner;
-import java.awt.geom.Point2D;
 import java.io.*;
 public class GaussianBayes {
 	public static void main(String [] args) {
@@ -41,6 +51,9 @@ public class GaussianBayes {
 			int classAmount = classes2.size();
 			//System.out.println(classes.size());
 			//System.out.println(classAmount);
+			/**
+			 * These loops initialize the ArrayLists of ArrayLists
+			 */
 			for (int i = 0; i < classAmount; i++) {
 				ArrayList<Double> storeX = new ArrayList<Double>();
 				dataX.add(storeX);
@@ -119,8 +132,8 @@ public class GaussianBayes {
 				
 			}
 			for(int b = 0; b < classAmount; b++) {
-				//double finalProb = gaussX.get(b).get(0) * gaussY.get(b).get(0);
-				//System.out.println("Class " + b + " value: " + finalProb);
+				double finalProb = gaussX.get(b).get(0) * gaussY.get(b).get(0);
+				System.out.println("Class " + b + " value: " + finalProb);
 			}
 			//System.out.println(meansX.get(0));
 			//System.out.println(varY.get(0));
@@ -128,8 +141,11 @@ public class GaussianBayes {
 			for(int l = 0; l < classAmount; l++) {
 				double prob = classProb(dataX.get(l), counter);
 				//System.out.println(prob);
+				//System.out.println(prob);
+				//System.out.println(gaussX.get(l).get(0));
+				//System.out.println(gaussY.get(l).get(0));
 				double probability = prob*gaussX.get(l).get(0)*gaussY.get(l).get(0);
-				System.out.println("Class " + l + " Probability: " + probability);
+				//System.out.println("Class " + l + " Probability: " + probability);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +154,11 @@ public class GaussianBayes {
 		
 		//System.out.println(varX.get(1));
 }
-	
+	/**
+	 * 
+	 * @param x is the list of x data for a given class
+	 * @return the mean of the class
+	 */
 	public static double meanX(ArrayList<Double> x) {
 		double sum = 0;
 		for (int i = 0; i < x.size(); i++) {
@@ -148,6 +168,11 @@ public class GaussianBayes {
 		return sum;
 		
 	}
+	/**
+	 * 
+	 * @param y is the list of y data for a given class
+	 * @return the mean of the class
+	 */
 	public static double meanY(ArrayList<Double> y) {
 		double sum = 0;
 		for (int i = 0; i < y.size(); i++) {
@@ -156,6 +181,11 @@ public class GaussianBayes {
 		sum /= y.size();
 		return sum;
 	}
+	/**
+	 * 
+	 * @param x is the list of x data for a given class
+	 * @return the variance of the class
+	 */
 	public static double varianceX(ArrayList<Double> x) {
 		double mean = meanX(x);
 		//System.out.println(mean);
@@ -170,6 +200,11 @@ public class GaussianBayes {
 		
 		
 	}
+	/**
+	 * 
+	 * @param y is the list of y data for a given class
+	 * @return the variance of the class
+	 */
 	public static double varianceY(ArrayList<Double> y) {
 		double mean = meanY(y);
         double temp = 0;
@@ -179,7 +214,13 @@ public class GaussianBayes {
 		
 		
 	}
-	//where x = mean, y = variance, and z is the input
+	/**
+	 * 
+	 * @param x is the mean
+	 * @param y is the variance
+	 * @param z is the input
+	 * @return finalCalc is the probability using the Gaussian Naive Bayes formula
+	 */
 	public static double gaussianMath(double x, double y, double z) {
 		//System.out.println(x);
 		//System.out.println(y);
@@ -200,8 +241,9 @@ public class GaussianBayes {
 		return finalCalc;
 		
 	}
-	//can pass in either dataX or dataY, as both ArrayLists have the same length.
-	//x is the class being passed, y is the total number of points in the file.
+	/**
+	 * Can pass either dataX or dataY through to find the probability of the given class.
+	 */
 	public static double classProb(ArrayList<Double> x, double y) {
 		double nPoints = x.size();
 		
